@@ -12,6 +12,7 @@ local function create_config(args)
     logger.debug("Skip debugging, build failed!", { feature = "debugger" })
     error("Skip debugging, build failed!")
   end
+  print(args.project_information)
 
   return {
     name = "Launch - .NET",
