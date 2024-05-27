@@ -4,7 +4,17 @@ local logger = require("csharp.log")
 local function execute_command(cmd)
   local file = io.popen(cmd .. " 2>&1")
   local output = file:read("*all")
-  local _, _, exit_code = file:close()
+  local success, exit_reason, exit_code = file:close()
+
+  -- If the command was successful, success will be true, and exit_code will be 0
+  -- If the command failed, success will be false, and exit_code will be non-zero
+  if success then
+    exit_code = 0
+  elseif exit_reason == "exit" then
+    exit_code = exit_code -- This is already set correctly
+  else
+    exit_code = -1 -- Indeterminate exit code
+  end
   return output, exit_code
 end
 
