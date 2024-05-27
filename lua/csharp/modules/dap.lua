@@ -22,7 +22,7 @@ function M.get_debug_adapter()
     package:install()
   end
 
-  local path = package:get_install_path() .. "/netcoredbg"
+  local path = package:get_install_path() .. "/netcoredbg/netcoredbg"
 
   dap.adapters.coreclr = {
     type = "executable",
