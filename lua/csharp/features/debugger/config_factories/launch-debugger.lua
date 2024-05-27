@@ -12,7 +12,7 @@ local function create_config(args)
     logger.debug("Skip debugging, build failed!", { feature = "debugger" })
     error("Skip debugging, build failed!")
   end
-  print(vim.inspect(args.project_information))
+  print(string.gsub(args.project_information.TargetPath, "\\\\Saluki%.dll$", ""))
 
   return {
     name = "Launch - .NET",
